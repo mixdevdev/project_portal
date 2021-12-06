@@ -6,3 +6,4 @@ from django.contrib.auth.models import  AbstractUser
 
 class User(AbstractUser):
     name_enterprise=models.CharField(max_length=200,default=' ',verbose_name='Nom entreprise')
+
