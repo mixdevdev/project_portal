@@ -19,4 +19,6 @@ from django.urls import path,include
 urlpatterns = [
     path('',include('portaljob_visitor.urls') ),
     path('admin/', admin.site.urls),
+    path('register/',include('registration.urls')),
+    path('main_app/',include('portaljob_activity.urls')),
 ]

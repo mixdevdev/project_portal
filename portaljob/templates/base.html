@@ -37,41 +37,56 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="{%url 'portaljob_visitor:recruitment'%}">Emplois</a>
-                        <a class="nav-link" href="#">Profils</a>
-                        <a class="nav-link" href="#">Formations</a>
-                        <a class="nav-link" href="#">Contacts</a>
+                        {% if user.is_authenticated %}
+                            {%block is_authenticated%}
+                            {%endblock %}
+                        {% else %}
+                            <a class="nav-link active" aria-current="page" href="{%url 'portaljob_visitor:recruitment'%}">Emplois</a>
+                            <a class="nav-link" href="#">Profils</a>
+                            <a class="nav-link" href="#">Formations</a>
+                            <a class="nav-link" href="#">Contacts</a>
+                        {% endif %}
+                        
                         <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
                     </div>
                 </div>
-                <div class="collapse navbar-collapse d-flex justify-content-end navbar-nav">
-                    <a class="nav-link link-secondary" href="#">Connexion</a>
-                    <a class="nav-link link-secondary" href="#">Candidat</a>
-                    <a class="nav-link link-secondary" href="#">Recruteur</a>
-                </div>
+                
+                {% if user.is_authenticated == False%}
+                    <div class="collapse navbar-collapse d-flex justify-content-end navbar-nav">
+                        <a class="nav-link link-secondary" href="{%url 'registration:login'%}">Connexion</a>
+                    </div>
+                {% else %}
+                    <div class="collapse navbar-collapse d-flex justify-content-end navbar-nav">
+                        <a class="nav-link link-secondary" href="{%url 'registration:logout'%}">Déconexion</a>
+                    </div>
+                {%endif%}
+
             </div>
         </nav>
         <!-- <div class=""></div> -->
-        <section class="header-main border-bottom  parallax">
-            <div class="container-fluid">
-                <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-                    <div class="col-md-2" style="text-align: center;"> 
-                        <span>
-                            Rechercher Emplois et recrutement
-                        </span>
-                        <!-- <img class="d-none d-md-flex" src="https://i.imgur.com/R8QhGhk.png" width="100">  -->
-                    </div>
-                    <div class="col-md-8">
-                        <div class="d-flex form-inputs"> <input class="form-control" type="text" placeholder=" Recherche de Mots cles" style="margin-left:20px;"> <i class="bx bx-search"></i> </div>
-                    </div>
-                    <!-- <div class="col-md-2">
-                        <div class="d-flex d-none d-md-flex flex-row align-items-center"> <span class="shop-bag"><i class='bx bxs-shopping-bag'></i></span>
-                            <div class="d-flex flex-column ms-2"> <span class="qty">1 Product</span> <span class="fw-bold">$27.90</span> </div>
+        {% if user.is_authenticated == False%}
+            <section class="header-main border-bottom  parallax">
+                <div class="container-fluid">
+                    <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
+                        <div class="col-md-2" style="text-align: center;"> 
+                            <span>
+                                Rechercher Emplois et recrutement
+                            </span>
+                            <!-- <img class="d-none d-md-flex" src="https://i.imgur.com/R8QhGhk.png" width="100">  -->
                         </div>
-                    </div> -->
+                        <div class="col-md-8">
+                            <div class="d-flex form-inputs"> <input class="form-control" type="text" placeholder=" Recherche de Mots cles" style="margin-left:20px;"> <i class="bx bx-search"></i> </div>
+                        </div>
+                        <!-- <div class="col-md-2">
+                            <div class="d-flex d-none d-md-flex flex-row align-items-center"> <span class="shop-bag"><i class='bx bxs-shopping-bag'></i></span>
+                                <div class="d-flex flex-column ms-2"> <span class="qty">1 Product</span> <span class="fw-bold">$27.90</span> </div>
+                            </div>
+                        </div> -->
+                    </div>
                 </div>
-            </div>
-        </section>   
+            </section>      
+        {%endif%}
+
         
         {%block content%}
         {%endblock %}

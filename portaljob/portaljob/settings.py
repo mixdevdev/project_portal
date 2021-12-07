@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'portaljob_visitor.apps.PortaljobVisitorConfig',
     'registration.apps.RegistrationConfig',
     'portaljob_activity.apps.PortaljobActivityConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL='registration.User'
+# AUTH_USER_MODEL='registration.NameRecruiter'
